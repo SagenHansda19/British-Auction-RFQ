@@ -31,6 +31,10 @@ select = ["E", "F", "I", "UP", "B"]
 testpaths = ["tests"]
 pythonpath = ["."]
 addopts = "-ra"
+filterwarnings = [
+    # Starlette's TestClient nags about httpx -> httpx2; harmless, we keep plain httpx.
+    "ignore:Using `httpx` with `starlette.testclient` is deprecated",
+]
 
 
 [tool.ruff.lint.flake8-bugbear]

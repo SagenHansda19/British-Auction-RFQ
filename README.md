@@ -31,6 +31,14 @@ make beat              # (separate terminal) Celery beat: closes expired auction
 No login: create users with `POST /api/v1/users`, then send `X-User-Id: <id>` on requests.
 Every `make` target is a plain command; see the `Makefile`.
 
+## Testing
+
+```bash
+make test     # 48 backend tests: auction rules, API, Celery sweep, 20 parallel bids
+```
+
+With the API running, every endpoint can also be tried at http://localhost:8000/docs (Swagger UI).
+
 ## Assumptions
 
 The assignment leaves some rules open. These are the decisions made:

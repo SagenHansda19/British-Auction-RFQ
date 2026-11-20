@@ -17,7 +17,7 @@ class ErrorCode(StrEnum):
 
 
 class AppError(Exception):
-    status_code = 400
+    status_code = 422
     code = ErrorCode.VALIDATION_ERROR
 
     def __init__(self, message: str):

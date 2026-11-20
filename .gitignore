@@ -28,3 +28,6 @@ dist/
 !README.md
 !docs/HLD.md
 !docs/SCHEMA.md
+
+# personal API testing
+postman/

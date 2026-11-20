@@ -13,6 +13,9 @@ migrate:    # run migrations
 migration:  # make migration m="message"
 	cd backend && uv run alembic revision --autogenerate -m "$(m)"
 
+seed:       # reset dev db with demo data
+	cd backend && uv run python -m scripts.seed
+
 api:
 	cd backend && uv run uvicorn app.main:app --reload --port $(API_PORT)
 
@@ -28,4 +31,10 @@ test:
 lint:
 	cd backend && uv run ruff check . && uv run ruff format --check .
 
-.PHONY: infra install migrate migration api worker beat test lint
+.PHONY: infra install migrate migration seed api worker beat test lint web-install web
+
+web-install:
+	cd frontend && npm install
+
+web:
+	cd frontend && npm run dev

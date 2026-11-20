@@ -7,7 +7,7 @@ bids only go down, and late activity extends the auction up to a hard **forced c
 - Suppliers place bids (freight + origin + destination charges); the lowest total is L1.
 - A bid in the last X minutes that matches the trigger pushes the close out by Y minutes, never past the forced close.
 
-**Stack:** FastAPI · PostgreSQL · SQLAlchemy · Alembic · Celery + Redis · React (Vite, TanStack Query)
+**Stack:** FastAPI · PostgreSQL · SQLAlchemy · Alembic · Celery + Redis · React (Vite, TanStack Query, React Router, Tailwind CSS)
 
 ## Design documents
 
@@ -16,20 +16,33 @@ bids only go down, and late activity extends the auction up to a hard **forced c
 
 ## Run it
 
-**Needs:** Docker (with Compose), [uv](https://docs.astral.sh/uv/), make (optional).
+**Needs:** Docker (with Compose), [uv](https://docs.astral.sh/uv/), Node.js 20+, make (optional).
 
 ```bash
 cp .env.example .env   # change ports here if 5432 / 6379 / 8000 are taken
 make infra             # postgres + redis in docker
 make install           # backend dependencies (uv installs Python 3.12 too)
 make migrate           # create the tables
-make api               # API at http://localhost:8000, interactive docs at /docs
-make worker            # (separate terminal) Celery worker
-make beat              # (separate terminal) Celery beat: closes expired auctions every 5s
+make seed              # demo data: 1 buyer, 3 suppliers, 4 auctions (one per status)
+make web-install       # frontend dependencies
+
+make api               # terminal 1: API at http://localhost:8000 (Swagger at /docs)
+make worker            # terminal 2: Celery worker
+make beat              # terminal 3: Celery beat, closes expired auctions every 5 s
+make web               # terminal 4: UI at http://localhost:5173
 ```
 
-No login: create users with `POST /api/v1/users`, then send `X-User-Id: <id>` on requests.
-Every `make` target is a plain command; see the `Makefile`.
+Open http://localhost:5173 and pick a user in the top-right corner ("Acting as"). Buyers
+create RFQs; suppliers place bids. There is no login: the UI sends the chosen user as an
+`X-User-Id` header. Every `make` target is a plain command; see the `Makefile`.
+
+## Project structure
+
+```
+backend/    FastAPI app (api/ routers, services/, engine.py auction rules, models/, worker/ Celery)
+frontend/   React + Vite + Tailwind (pages/: listing, create RFQ, details; components/)
+docs/       HLD.md (architecture), SCHEMA.md (database design)
+```
 
 ## Testing
 

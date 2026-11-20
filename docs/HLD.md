@@ -38,7 +38,7 @@ flowchart LR
 
 | Component | Responsibility | Technology |
 |---|---|---|
-| Frontend | Listing, create-RFQ form, details page (ranking, bids, config, activity log), bid form, countdown | React, Vite, TanStack Query, React Router |
+| Frontend | Listing, create-RFQ form, details page (ranking, bids, config, activity log), bid form, countdown | React, Vite, TanStack Query, React Router, Tailwind CSS |
 | Routers | HTTP ↔ Python: parse input, validate, return JSON or a standard error | FastAPI, Pydantic |
 | Services | Business flow in one DB transaction; per-auction row lock while bidding | SQLAlchemy 2.0 |
 | Auction engine | Pure rules: ranking, tie-break, trigger window, trigger evaluation, extension cap, status | Plain Python (no I/O, so easy to unit-test) |

@@ -1,0 +1,28 @@
+# secrets / local config
+.env
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+celerybeat-schedule*
+
+# node
+node_modules/
+dist/
+
+# editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# local tooling
+.claude/
+
+# personal notes: only README.md is part of the repo
+*.md
+!README.md

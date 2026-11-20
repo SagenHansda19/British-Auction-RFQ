@@ -26,3 +26,5 @@ dist/
 # personal notes: only README.md is part of the repo
 *.md
 !README.md
+!docs/HLD.md
+!docs/SCHEMA.md

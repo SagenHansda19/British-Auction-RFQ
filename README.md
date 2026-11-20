@@ -9,6 +9,11 @@ bids only go down, and late activity extends the auction up to a hard **forced c
 
 **Stack:** FastAPI · PostgreSQL · SQLAlchemy · Alembic · Celery + Redis · React (Vite, TanStack Query)
 
+## Design documents
+
+- **[High-Level Design](docs/HLD.md)**: architecture diagram, components, auction lifecycle, bid flow, scaling notes
+- **[Database Schema](docs/SCHEMA.md)**: ER diagram, tables, constraints, indexes, design decisions
+
 ## Run it
 
 **Needs:** Docker (with Compose), [uv](https://docs.astral.sh/uv/), make (optional).
